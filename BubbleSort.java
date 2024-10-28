@@ -1,20 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package bubblesort;
 
 import java.util.Scanner;
 
-/**
- *
- * @author USER
- */
 public class BubbleSort {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void assending(int[]array){
          int n = array.length;
         for (int i = 0; i < n - 1; i++) {
