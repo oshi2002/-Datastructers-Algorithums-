@@ -1,0 +1,72 @@
+package bubblesort;
+
+import java.util.Scanner;
+
+public class Optimizebubble {
+    private static void optimizeAsc(int []array){
+        int n = array.length;
+        for(int i = 0;i<n-1;i++){
+            
+            boolean swapped = false; // Track if any swaps are made
+            
+            for(int j=0; j<n-1-i ; j++){
+                if(array[j] > array[j+1]){
+                    int temp = array[j];
+                    array[j]=array[j+1];
+                    array[j+1] = temp;
+                    swapped = true;
+                }
+            }
+            
+            if(!swapped){
+                break;      // Exit if no swaps were made
+            }
+        }
+    }
+    
+    
+    private static void optimizeDesc(int []array){
+        int n = array.length;
+        for(int i = 0;i<n-1;i++){
+            
+            boolean swapped = false; // Track if any swaps are made
+            
+            for(int j=0; j<n-1-i ; j++){
+                if(array[j] < array[j+1]){
+                    int temp = array[j];
+                    array[j]=array[j+1];
+                    array[j+1] = temp;
+                    swapped = true;
+                }
+            }
+            
+            if(!swapped){
+                break;      // Exit if no swaps were made
+            }
+        }
+    }
+    
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int[] numbers = new int[5];                         // hardcode array  int[] numbers = {2,7,5,8,4,1};
+        
+        // Read 8 numbers from the user
+        System.out.println("Enter 5 numbers:");
+        for (int i = 0; i < 5; i++) {
+            System.out.print("Number " + (i + 1) + ": ");
+            numbers[i] = scanner.nextInt();
+        }
+        // Sort and display in ascending order
+        System.out.println("\nAscending order:");
+        optimizeAsc(numbers);
+        for (int number : numbers) {
+             System.out.print(number + " ");
+        }
+         // Sort and display in descending order
+        System.out.println("\nDescending order:");
+        optimizeDesc(numbers);
+        for (int number : numbers) {
+             System.out.print(number + " ");
+        }
+    }
+}
