@@ -1,0 +1,38 @@
+package collectionpractical01;
+
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.SequencedCollection;
+
+
+public class SequencedCollection {
+
+  
+public static void main(String[] args) {
+
+        SequencedCollection s = new SequencedCollection();
+        s.sequ();
+
+    }
+
+    public void sequ() {
+        Deque<Integer> sc = new LinkedList<>();
+        sc.addFirst(1);
+        sc.addFirst(2);
+        sc.addFirst(3);
+        sc.addFirst(4);
+        sc.addLast(5);
+        System.out.println(sc.getFirst());
+        System.out.println(sc.removeLast());
+        System.out.println(sc.reversed());
+        sc.addLast(10);
+        System.out.println(sc.getLast());
+        System.out.println(sc.removeFirst());
+        System.out.println(sc);
+        System.out.println(sc.size());
+        
+
+    }
+        
+}
+
