@@ -1,0 +1,24 @@
+package collectionpractical01;
+
+import java.util.Collection;
+import java.util.LinkedList;
+
+public class Collect {
+    public static void main(String[] args) {
+        
+    Collection c = new LinkedList();
+        c.add(5);
+        c.add(8);
+        c.add(7);
+        c.add(2);
+        c.add(1);
+        System.out.println("All Elements : " + c);
+        c.remove(1);
+        System.out.println("IsEmpty : "+ c.isEmpty());
+        System.out.println("Size : "+ c.size());
+        System.out.println("Contains : "+ c.contains(5));
+        System.out.println("Remove : " + c.remove(5));
+        System.out.println("Final Output Elements : " + c);
+        
+    }
+}
