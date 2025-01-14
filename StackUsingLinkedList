@@ -1,0 +1,58 @@
+package StackUsingLinkedList;
+
+public class StackUsingLinkedList {
+     private class Node {
+        int data;
+        Node next;
+
+        Node(int data) {
+            this.data = data;
+            next = null;
+        }
+    }
+
+    private Node top;
+
+    public StackUsingLinkedList() {
+        top = null;
+    }
+
+    // Push element onto the stack
+    public void push(int value) {
+        Node newNode = new Node(value);
+        newNode.next = top;
+        top = newNode;
+    }
+
+    // Pop element from the stack
+    public int pop() {
+        if (top == null) {
+            System.out.println("Stack underflow");
+            return -1;
+        }
+        int value = top.data;
+        top = top.next;
+        return value;
+    }
+
+    // Peek the top element
+    public int peek() {
+        if (top == null) {
+            System.out.println("Stack is empty");
+            return -1;
+        }
+        return top.data;
+    }
+
+    public static void main(String[] args) {
+        StackUsingLinkedList stack = new StackUsingLinkedList();
+
+        stack.push(10);
+        stack.push(20);
+        stack.push(30);
+
+        System.out.println("Top element: " + stack.peek()); // Output: 30
+        System.out.println("Popped element: " + stack.pop()); // Output: 30
+        System.out.println("Top element after pop: " + stack.peek()); // Output: 20
+    }
+}
