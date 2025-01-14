@@ -1,0 +1,118 @@
+package DequeUsingTwoQueues;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class DequeUsingTwoQueues {
+    private Queue<Integer> queue1;
+    private Queue<Integer> queue2;
+
+    public DequeUsingTwoQueues() {
+        queue1 = new LinkedList<>();
+        queue2 = new LinkedList<>();
+    }
+
+    // Add element to the front
+    public void addFront(int value) {
+        queue2.add(value); // Enqueue the new element to queue2
+        while (!queue1.isEmpty()) {
+            queue2.add(queue1.remove()); // Transfer all elements from queue1 to queue2
+        }
+        swapQueues(); // Swap queue1 and queue2
+    }
+
+    // Add element to the rear
+    public void addRear(int value) {
+        queue1.add(value); // Add directly to queue1
+    }
+
+    // Remove element from the front
+    public int removeFront() {
+        if (queue1.isEmpty()) {
+            System.out.println("Deque is empty");
+            return -1;
+        }
+        return queue1.remove(); // Dequeue from queue1
+    }
+
+    // Remove element from the rear
+    public int removeRear() {
+        if (queue1.isEmpty()) {
+            System.out.println("Deque is empty");
+            return -1;
+        }
+
+        // Transfer all elements except the last one from queue1 to queue2
+        while (queue1.size() > 1) {
+            queue2.add(queue1.remove());
+        }
+        int value = queue1.remove(); // Remove the last element (rear)
+        swapQueues(); // Swap queue1 and queue2
+        return value;
+    }
+
+    // Peek the front element
+    public int peekFront() {
+        if (queue1.isEmpty()) {
+            System.out.println("Deque is empty");
+            return -1;
+        }
+        return queue1.peek();
+    }
+
+    // Peek the rear element
+    public int peekRear() {
+        if (queue1.isEmpty()) {
+            System.out.println("Deque is empty");
+            return -1;
+        }
+
+        // Transfer all elements except the last one from queue1 to queue2
+        int value = -1;
+        while (!queue1.isEmpty()) {
+            value = queue1.remove();
+            queue2.add(value);
+        }
+        swapQueues(); // Swap queue1 and queue2
+        return value; // Return the last element (rear)
+    }
+
+    // Check if the deque is empty
+    public boolean isEmpty() {
+        return queue1.isEmpty();
+    }
+
+    // Swap the references of queue1 and queue2
+    private void swapQueues() {
+        Queue<Integer> temp = queue1;
+        queue1 = queue2;
+        queue2 = temp;
+    }
+
+    public static void main(String[] args) {
+        DequeUsingTwoQueues deque = new DequeUsingTwoQueues();
+
+        // Test add operations
+        deque.addFront(10);
+        deque.addRear(20);
+        deque.addFront(5);
+        deque.addRear(30);
+
+        // Test peek operations
+        System.out.println("Front element: " + deque.peekFront()); // Output: 5
+        System.out.println("Rear element: " + deque.peekRear());   // Output: 30
+
+        // Test remove operations
+        System.out.println("Removed front: " + deque.removeFront()); // Output: 5
+        System.out.println("Removed rear: " + deque.removeRear());   // Output: 30
+
+        // Check the deque state
+        System.out.println("Front element: " + deque.peekFront()); // Output: 10
+        System.out.println("Rear element: " + deque.peekRear());   // Output: 20
+
+        // Test empty check
+        deque.removeFront();
+        deque.removeFront();
+        System.out.println("Is deque empty? " + deque.isEmpty()); // Output: true
+    }
+}
