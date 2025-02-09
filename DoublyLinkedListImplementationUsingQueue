@@ -1,0 +1,83 @@
+class Node {
+    int data;
+    Node prev, next;
+
+    public Node(int data) {
+        this.data = data;
+        this.prev = null;
+        this.next = null;
+    }
+}
+
+// Doubly Linked List implementation using Queue
+public class DoublyLinkedListImplementationUsingQueue {
+    private Node front, rear;
+
+    // Constructor
+    public DoublyLinkedListImplementationUsingQueue() {
+        this.front = null;
+        this.rear = null;
+    }
+
+    // Enqueue (Insert at rear)
+    public void enqueue(int data) {
+        Node newNode = new Node(data);
+        if (rear == null) { // Queue is empty
+            front = rear = newNode;
+        } else {
+            rear.next = newNode;
+            newNode.prev = rear;
+            rear = newNode;
+        }
+        System.out.println("Enqueued: " + data);
+    }
+
+    // Dequeue (Remove from front)
+    public int dequeue() {
+        if (front == null) {
+            System.out.println("Queue is empty!");
+            return -1;
+        }
+        int value = front.data;
+        front = front.next;
+        if (front != null) {
+            front.prev = null;
+        } else {
+            rear = null; // If queue becomes empty
+        }
+        System.out.println("Dequeued: " + value);
+        return value;
+    }
+
+    // Display the queue
+    public void display() {
+        if (front == null) {
+            System.out.println("Queue is empty!");
+            return;
+        }
+        Node temp = front;
+        System.out.print("Queue: ");
+        while (temp != null) {
+            System.out.print(temp.data + " ⇄ ");
+            temp = temp.next;
+        }
+        System.out.println("null");
+    }
+
+    // Main method to test the queue
+    public static void main(String[] args) {
+        DoublyLinkedListImplementationUsingQueue queue = new DoublyLinkedListImplementationUsingQueue(); // ✅ Fixed
+
+        queue.enqueue(10);
+        queue.enqueue(20);
+        queue.enqueue(30);
+        queue.display(); // Output: 10 ⇄ 20 ⇄ 30 ⇄ null
+
+        queue.dequeue();
+        queue.display(); // Output: 20 ⇄ 30 ⇄ null
+
+        queue.dequeue();
+        queue.dequeue();
+        queue.display(); // Output: Queue is empty!
+    }
+}
